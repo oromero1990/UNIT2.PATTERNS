@@ -48,7 +48,7 @@ describe("haveEnoughFood", () => {
   it("returns false if backpack is empty", () => {
     expect(haveEnoughFood([], 1)).toBe(false);
   });
-  it("returns true if there is enough food", () => {
+  it("returns true when backpack has 1 food and there is 1 person", () => {
     expect(
       haveEnoughFood(
         [
@@ -60,7 +60,23 @@ describe("haveEnoughFood", () => {
       )
     ).toBe(true);
   });
-  it("returns false if there is not enough food", () => {
+  it("returns true when backpack has 5 food and there are 3 people", () => {
+    expect(
+      haveEnoughFood(
+        [
+          { category: "food" },
+          { category: "food" },
+          { category: "equipment" },
+          { category: "food" },
+          { category: "clothes" },
+          { category: "food" },
+          { category: "food" },
+        ],
+        3
+      )
+    ).toBe(true);
+  });
+  it("returns false when backpack has 1 food and there are 2 people", () => {
     expect(
       haveEnoughFood(
         [
@@ -69,6 +85,19 @@ describe("haveEnoughFood", () => {
           { category: "clothes" },
         ],
         2
+      )
+    ).toBe(false);
+  });
+  it("returns false when backpack has 2 food and there are 3 people", () => {
+    expect(
+      haveEnoughFood(
+        [
+          { category: "food" },
+          { category: "equipment" },
+          { category: "clothes" },
+          { category: "food" },
+        ],
+        3
       )
     ).toBe(false);
   });
